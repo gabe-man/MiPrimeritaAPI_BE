@@ -22,17 +22,19 @@ builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new AutomapperProfile()));
 
 builder.Services.AddDbContext<IESContext>();
 
+
 //Para habilitar CORS en nuestra API
 string[] exposedHeaders = { "Authorization" };
 builder.Services.AddCors(o =>
 {
     o.AddPolicy("AllowSetOrigins", options =>
     {
-        options.WithOrigins("http://localhost:8080");
+        options.WithOrigins("http://127.0.0.1:5500");
         options.AllowAnyHeader();
         options.AllowAnyMethod();
         options.AllowCredentials();
         options.WithExposedHeaders(exposedHeaders);
+
     });
 });
 
@@ -50,5 +52,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowSetOrigins");
 
 app.Run();

@@ -57,5 +57,12 @@ namespace MiPrimeritaAPI.API.Controllers
             alumnoBL.Delete(DNI);
             return Ok();            
         }
+
+        [HttpPost]
+        [Route("Login")]
+        public ActionResult Login(LoginDTO loginDTO)
+        {
+            return Ok();
+        }
     }
 }
