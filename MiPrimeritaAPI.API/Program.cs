@@ -17,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAlumnoBL, AlumnoBL>();
 builder.Services.AddScoped<IAlumnoDAL, AlumnoDAL>();
+builder.Services.AddScoped<IUserBL, UserBL>();
+builder.Services.AddScoped<IUserDAL, UserDAL>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new AutomapperProfile()));
 
@@ -29,7 +31,7 @@ builder.Services.AddCors(o =>
 {
     o.AddPolicy("AllowSetOrigins", options =>
     {
-        options.WithOrigins("http://127.0.0.1:5500");
+        options.WithOrigins("http://localhost:8080");
         options.AllowAnyHeader();
         options.AllowAnyMethod();
         options.AllowCredentials();
